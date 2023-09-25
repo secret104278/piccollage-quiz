@@ -4,10 +4,20 @@ version = "0.1.0"
 description = ""
 authors = ["Jacob YC <secret104278@gmail.com>"]
 readme = "README.md"
-packages = [{include = "piccollage_quiz"}]
+packages = [{ include = "q1" }]
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.9,<3.13"
+numpy = "^1.26.0"
+openai-clip = "^1.0.1"
+torch = "^2.0.1"
+torchvision = "^0.15.2"
+ftfy = "^6.1.1"
+regex = "^2023.8.8"
+tqdm = "^4.66.1"
+pillow = "^10.0.1"
+fastapi = "^0.103.1"
+uvicorn = { extras = ["standard"], version = "^0.23.2" }
 
 
 [tool.poetry.group.dev.dependencies]
