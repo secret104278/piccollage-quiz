@@ -1,0 +1,26 @@
+FROM python:3.11.5-bookworm
+
+ENV POETRY_HOME=/opt/poetry
+ENV PATH=$POETRY_HOME/bin:$PATH
+
+ADD https://install.python-poetry.org/ /tmp/install-poetry.py
+RUN python3 /tmp/install-poetry.py --version 1.6.1 && \
+    poetry config virtualenvs.create false && \
+    poetry config installer.max-workers 10
+
+# Add docker-compose-wait tool -------------------
+ENV WAIT_VERSION 2.7.2
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/$WAIT_VERSION/wait /wait
+RUN chmod +x /wait
+
+WORKDIR /piccollage-quiz
+
+COPY poetry.lock pyproject.toml ./
+RUN poetry install --no-interaction --no-ansi --no-root --no-cache --without dev
+
+# Preload ViT-B/32 model
+RUN python -c "import clip; clip.load('ViT-B/32')"
+
+COPY app app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
