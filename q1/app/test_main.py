@@ -7,6 +7,7 @@ client = TestClient(app)
 # TODO: database setup and teardown
 # TODO: add more tests
 
+
 def test_search_stickers():
     response = client.get("/sticker/search", params={"search_term": "a cat in park"})
     assert response.status_code == 200
@@ -26,7 +27,6 @@ def test_report_stickers():
 
 
 def test_get_feedback():
-
     response = client.get("/sticker/feedback", params={"window_hour": 10})
 
     assert response.status_code == 200

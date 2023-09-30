@@ -12,3 +12,6 @@ uvicorn app.main:app --reload
 ```sh
 pytest
 ```
+
+## TODO
+- external dependecies `clip.load`, currently we use implicit cache
