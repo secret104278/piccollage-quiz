@@ -5,7 +5,8 @@ def g(num: int) -> int:
     Time: worst/avg: O(logN), best O(1)
     Space: worst/avg: O(logN), best O(1), can be always O(1) if use iterative approach
     """
-    assert num >= 0
+    if num < 1:
+        return 0
 
     length = len(str(num))
     if length == 0:

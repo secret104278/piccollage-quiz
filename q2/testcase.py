@@ -9,6 +9,8 @@ def ground_truth(n: int) -> int:
 
 
 if __name__ == "__main__":
+    assert g(0) == 0
+    assert g(1) == 0
     assert g(7) == 1
     assert g(20) == 2
     assert g(70) == 8
